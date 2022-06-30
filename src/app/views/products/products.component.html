@@ -1,0 +1,39 @@
+<table mat-table [dataSource]="products" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="_id">
+      <th mat-header-cell *matHeaderCellDef> ID </th>
+      <td mat-cell *matCellDef="let product"> {{ product._id }} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Nome </th>
+      <td mat-cell *matCellDef="let product"> {{ product.name }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef> Status </th>
+        <td mat-cell *matCellDef="let product"> {{ product.status }} </td>
+      </ng-container>
+  
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef> Descrição </th>
+      <td mat-cell *matCellDef="let product"> {{ product.description }} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="price">
+      <th mat-header-cell *matHeaderCellDef> Preço </th>
+      <td mat-cell *matCellDef="let product"> {{ product.price }} </td>
+    </ng-container>
+
+    <!-- Actions -->
+    <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> Ações </th>
+        <td mat-cell *matCellDef="let product"> 
+            <button mat-icon-button color="primary"><mat-icon>delete</mat-icon></button>
+            <button mat-icon-button color="primary"><mat-icon>edit</mat-icon></button>
+        </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="tableColumnns"></tr>
+    <tr mat-row *matRowDef="let row; columns: tableColumnns;"></tr>
+</table>
