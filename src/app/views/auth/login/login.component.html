@@ -1,0 +1,30 @@
+<div class="centered-content">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>Login E-commerce Admin</mat-card-title>
+            <mat-card-subtitle>Insira seu e-mail e senha para logar</mat-card-subtitle>
+        </mat-card-header>
+
+        <form [formGroup]="loginForm" (ngSubmit)="submitForm()">
+            <!-- E-mail -->
+            <p>
+                <mat-form-field class="example-full-width">
+                    <mat-label>E-mail</mat-label>
+                    <input matInput placeholder="E-mail" formControlName="email">
+                </mat-form-field>
+            </p>
+            
+            <!-- Password -->
+            <p>
+                <mat-form-field class="example-full-width">
+                    <mat-label>Senha</mat-label>
+                    <input matInput placeholder="Senha" type="password" formControlName="password">
+                </mat-form-field>
+            </p>
+
+            <button class="login-button" mat-raised-button color="primary" [disabled]="isLoading">
+                {{ (isLoading) ? 'Carregando...' : 'Login' }}
+            </button>
+        </form>
+    </mat-card>
+</div>

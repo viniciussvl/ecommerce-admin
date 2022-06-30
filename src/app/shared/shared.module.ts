@@ -15,6 +15,8 @@ import { RouterModule } from '@angular/router';
   declarations: [
   ],
   exports: [
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class SharedModule {}
