@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { JwtService } from './jwt.service';
 
@@ -15,11 +15,16 @@ interface ICredentials {
 export class AuthService {
 
   constructor(
-    private jwtService: JwtService,
-    private http: HttpClient) { }
+    private http: HttpClient,
+    private jwtService: JwtService
+    ) { }
 
-  login(credentials: ICredentials): Observable<any> {
-    return this.http.post(environment.apiUrl + '/auth/login', credentials);
+  login(credentials: ICredentials) {
+    return this.http.post<any>(environment.apiUrl + '/auth/login', credentials)
+    .pipe(map((result) => {
+      this.jwtService.saveToken(result.token);
+      return result.user;
+    }))
   }
 
   register(data: any): Observable<any> {
