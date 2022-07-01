@@ -23,11 +23,26 @@ export class AuthService {
     return this.http.post<any>(environment.apiUrl + '/auth/login', credentials)
     .pipe(map((result) => {
       this.jwtService.saveToken(result.token);
+
+      // save user localStorage stringify
       return result.user;
     }))
   }
 
+  logout() {
+    this.jwtService.destroyToken();
+  }
+
   register(data: any): Observable<any> {
     return this.http.post(environment.apiUrl + '/auth/register', data);
+  }
+
+  isAuthenticated(): Boolean {
+    const token = this.jwtService.getToken();
+    if(!token) {
+      return false;
+    }
+
+    return true;
   }
 }

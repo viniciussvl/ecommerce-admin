@@ -13,3 +13,12 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     justify-content: center;
     align-items: center;
 }
+
+.custom-button {
+    padding: 0 10px 0 6px;
+    min-width: 88px;
+    border-radius: 0px;
+    font-size: 14px;
+    text-align: center;
+    text-transform: uppercase;
+  }
