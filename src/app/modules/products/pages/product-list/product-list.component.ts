@@ -3,13 +3,12 @@ import { Product } from 'src/app/core/models/product.model';
 import { ProductService } from 'src/app/core/services/product.service';
 
 @Component({
-  selector: 'app-products',
-  templateUrl: './products.component.html',
-  styleUrls: ['./products.component.scss']
+  selector: 'app-product-list',
+  templateUrl: './product-list.component.html',
+  styleUrls: ['./product-list.component.scss']
 })
-
-export class ProductsComponent implements OnInit {
-
+export class ProductListComponent implements OnInit {
+  
   public tableColumnns: string[] = ['_id', 'name', 'description', 'price', 'status', 'actions'];
   public products!: Product[];
   public totalProducts: Number = 0;

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
@@ -13,6 +14,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
+    private router: Router,
     private fb: FormBuilder) {
 
     this.loginForm = this.fb.group({
@@ -30,10 +32,11 @@ export class LoginComponent implements OnInit {
     const credentials = this.loginForm.value;
     this.authService.login(credentials).subscribe({
       next: (data: any) => {
-        console.log('logado')
+        this.router.navigateByUrl('/products');
       },
       error: (error: any) => {
         console.log('senha incorreta');
+        this.isLoading = false;
       },
       complete: () => {
         this.isLoading = false;

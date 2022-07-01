@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { ToastComponent } from './components/toast/toast.component';
 import { AlertComponent } from './components/alert/alert.component';
+import { MaterialModule } from './modules/material.module';
 
 @NgModule({
   imports: [
@@ -12,7 +13,8 @@ import { AlertComponent } from './components/alert/alert.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    RouterModule
+    RouterModule,
+    MaterialModule
   ],
   declarations: [
     ToastComponent,
@@ -20,7 +22,9 @@ import { AlertComponent } from './components/alert/alert.component';
   ],
   exports: [
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MaterialModule,
+    HttpClientModule
   ]
 })
 export class SharedModule {}

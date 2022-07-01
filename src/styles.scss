@@ -6,3 +6,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .container {
     padding: 20px 80px;
 }
+
+.centered-content {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
