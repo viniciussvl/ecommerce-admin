@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth.service';
+import CustomValidator from 'src/app/core/utils/custom-validator';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +10,7 @@ import { AuthService } from 'src/app/core/services/auth.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  public loginForm: FormGroup;
+  public form: FormGroup;
   public isLoading: Boolean = false;
 
   constructor(
@@ -17,9 +18,9 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private fb: FormBuilder) {
 
-    this.loginForm = this.fb.group({
-      email: ['', Validators.required],
-      password: ['', Validators.required]
+    this.form = this.fb.group({
+      email: ['', [Validators.required, CustomValidator.isEmail]],
+      password: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]]
     });
    }
 
@@ -27,9 +28,17 @@ export class LoginComponent implements OnInit {
 
   }
 
-  submitForm() {
+  get formControls(): { [key: string]: AbstractControl } {
+    return this.form.controls;
+  }
+
+  submitForm(): void {
+    if(!this.form.valid) {
+      return;
+    }
+
     this.isLoading = true;
-    const credentials = this.loginForm.value;
+    const credentials = this.form.value;
     this.authService.login(credentials).subscribe({
       next: (data: any) => {
         this.router.navigateByUrl('/products');
