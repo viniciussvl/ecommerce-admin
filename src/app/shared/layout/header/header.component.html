@@ -1,10 +1,26 @@
 <mat-toolbar color="primary">
-    <span>E-commerce Admin</span>
 
-    <span class="spacer"></span>
-    <span>Olá Usuário,</span>
+    <mat-toolbar-row>
+      <button mat-icon-button>
+        <mat-icon>menu</mat-icon>
+      </button>
 
-    <button (click)="logout()" mat-icon-button class="example-icon favorite-icon">
-      <mat-icon>logout</mat-icon>
-    </button>
+      <h1>E-commerce Admin</h1>
+      <span class="menu-spacer"></span>
+      <div>
+        <a mat-button [routerLink]="'/products'"> Produtos </a>
+        <a mat-button [routerLink]="'/categories'"> Categorias </a>
+        <a mat-button [routerLink]="'/users'"> Usuários </a>
+        <a mat-button [routerLink]="'/orders'"> Pedidos </a>
+      </div>
+
+      <span class="spacer"></span>
+      <span>Olá Usuário,</span>
+  
+      <button (click)="logout()" mat-icon-button class="example-icon favorite-icon">
+        <mat-icon>logout</mat-icon>
+      </button>
+    </mat-toolbar-row>
+
+
 </mat-toolbar>
